@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="maincontainer">
+    <div class="header"><h1>MY LIBRARY</h1></div>
+    <div class="sidebarform">
+        <h2>Log a book!</h2>
+        <form>
+            <div class="container">
+            <label for="email"><b>Title</b></label>
+    <input type="text" id="title" placeholder="Enter title" name="email" required>
+
+    <label for="psw"><b>Author</b></label>
+    <input type="text" id="psw" placeholder="Enter author" name="psw" required> 
+
+    <label for="num"><b>Pages</b></label>
+    <input type="number" id="pgnum" placeholder="Enter how many pages" name="num" required>
+
+    <label>
+        <input type="checkbox" checked="checked" id="check" name="read" style="margin-bottom:15px"> Read the book
+      </label>
+
+      <div class="clearfix">
+        <button type="reset" class="cancelbtn">Cancel</button>
+        <button type="button" class="signupbtn" onclick="cons()">Sign Up</button>
+      </div>
+    </div>
+        </form>
+    </div>
+    <div class="maincontent"></div>
+</div>
+</body>
+<script src="js.js"></script>
+</html>

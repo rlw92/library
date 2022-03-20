@@ -1,0 +1,67 @@
+*{box-sizing:border-box;}
+
+body{
+    
+padding:0;
+margin:0;}
+
+.maincontainer{display:grid;
+     grid-template-columns: 1fr 3fr;
+    grid-template-rows:25vh 25vh 25vh 25vh;}
+
+.header{background-color:rgb(169, 240, 240);
+       grid-area:1/2/1/2;
+       display:flex;align-items: center;justify-content: center;
+}
+
+
+/*form and sidebar content*/
+.sidebarform{background-color:rgb(240, 132, 132);
+    grid-area:1/1/5/1;
+    display:flex; flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sidebarform form{display:flex;
+    flex-direction:column;
+    gap:2px;
+    
+    }
+
+.container{padding:10px;}
+input[type=text], input[type=number]{
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+  }
+
+  input[type=text]:focus, input[type=number]:focus{
+    background-color: #ddd;
+    outline: none;
+  }
+
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.6;
+  }
+  
+  button:hover {
+    opacity:1;
+  }
+
+  .cancelbtn{background-color:rgb(161, 161, 172);}
+
+/*main content*/
+  .maincontent{background-color:rgb(161, 161, 172);
+    grid-area:2/2/5/3;}
+
+
