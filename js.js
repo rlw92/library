@@ -10,8 +10,6 @@ function addBookToLibrary() {
 
 /*User interface*/
 
-
-
 function cons(){
     let title = document.getElementById("title").value;
 let auth = document.getElementById("psw").value;
