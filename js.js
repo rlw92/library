@@ -17,6 +17,8 @@ function cons(){
 let auth = document.getElementById("psw").value;
 let pgnum = document.getElementById("pgnum").value;
 let chec = document.getElementById("check");
-
-    console.log(title,auth,pgnum);
+let r;
+if(chec.checked === true){r = "read"}
+else if(chec.checked === false){r = "unread"}
+    console.log(title,auth,pgnum,r);
 }
