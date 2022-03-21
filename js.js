@@ -21,7 +21,9 @@ function Book(title,author,pgnum,r){
   this.title = title
   this.author = author
   this.pgnum = pgnum
-  this.r = che.checked
+  if(che.checked === true){r = "read"}
+else if(che.checked === false){r = "unread"}
+  this.r = r
 
 }
 
@@ -33,8 +35,9 @@ function addBookToLibrary() {
 else if(che.checked === false){r = "unread"}
     let newbook = new Book(title,author,pgnum,r);
   myLibrary.push(newbook);
-addcard(title,author,pgnum,r);
 
+//addcard(title,author,pgnum,r);
+addcardarr();
  }
 
  function addcard(title,author,pgnum,r){
@@ -61,7 +64,7 @@ let titleNode = document.createElement("h2");
  maincontent.appendChild(bookNode);
 }
 
-
+let maincontent = document.querySelector(".maincontent");
  /*let authorNode = document.createElement("h3");
  let pageNode = document.createElement("h3");
  let readNode = document.createElement("h3");
@@ -74,15 +77,40 @@ let titleNode = document.createElement("h2");
 */
   
 
+function addcardarr(){
+  maincontent.textContent ="";
+  
+  for(i=0;i<myLibrary.length;i++){
+  let bookNode = document.createElement("div");
+ 
+ let titleNode = document.createElement("h2");
+  titleNode.textContent =  myLibrary[i].title;
+ 
+  let authorNode = document.createElement("h2");
+  authorNode.textContent = myLibrary[i].author;
+ 
+  let pgnumNode = document.createElement("h2");
+  pgnumNode.textContent =  myLibrary[i].pgnum;
+ 
+  let readNode = document.createElement("h2");
+  readNode.textContent = myLibrary[i].r;
+ 
+  bookNode.appendChild(titleNode);
+  bookNode.appendChild(authorNode);
+  bookNode.appendChild(pgnumNode);
+  bookNode.appendChild(readNode);
+ 
+  let maincontent = document.querySelector(".maincontent");
+  maincontent.appendChild(bookNode);
+  }
+ }
 
 
 
 
-
-
-    for(i=0;i<myLibrary.length;i++){
     
-    document.querySelector(".title").textContent = myLibrary[i].title;
+    
+    document.querySelector(".title").textContent = myLibrary[0].title;
     document.querySelector(".author").textContent = myLibrary[0].author;
     document.querySelector(".pages").textContent = myLibrary[0].pgnum;
-    document.querySelector(".read").textContent = myLibrary[0].r;}
+    document.querySelector(".read").textContent = myLibrary[0].r;
