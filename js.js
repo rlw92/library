@@ -4,7 +4,7 @@ let myLibrary = [
     title: "A Game of Thrones",
     author: "George R. R. Martin",
     pgnum: 694,
-    r: false
+    r: "read"
   }
 ];
 
@@ -21,7 +21,7 @@ function Book(title,author,pgnum,r){
   this.title = title
   this.author = author
   this.pgnum = pgnum
-  this.r = r
+  this.r = che.checked
 
 }
 
@@ -29,14 +29,15 @@ function addBookToLibrary() {
   let title = titl.value;
   let author = auth.value;
   let pgnum = pgnu.value;
-  let r = che;
-  let newbook = new Book(title,author,pgnum,r);
+  if(che.checked === true){r = "read"}
+else if(che.checked === false){r = "unread"}
+    let newbook = new Book(title,author,pgnum,r);
   myLibrary.push(newbook);
-addcard(title,author);
+addcard(title,author,pgnum,r);
 
  }
 
- function addcard(title,author){
+ function addcard(title,author,pgnum,r){
  let bookNode = document.createElement("div");
 
 let titleNode = document.createElement("h2");
@@ -45,8 +46,16 @@ let titleNode = document.createElement("h2");
  let authorNode = document.createElement("h2");
  authorNode.textContent = author;
 
+ let pgnumNode = document.createElement("h2");
+ pgnumNode.textContent =  pgnum;
+
+ let readNode = document.createElement("h2");
+ readNode.textContent = r;
+
  bookNode.appendChild(titleNode);
  bookNode.appendChild(authorNode);
+ bookNode.appendChild(pgnumNode);
+ bookNode.appendChild(readNode);
 
  let maincontent = document.querySelector(".maincontent");
  maincontent.appendChild(bookNode);
