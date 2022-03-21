@@ -15,7 +15,7 @@ margin:0;}
 }
 
 
-/*form and sidebar content*/
+/*form/ sidebar content*/
 .sidebarform{background-color:rgb(240, 132, 132);
     grid-area:1/1/5/1;
     display:flex; flex-direction: column;
