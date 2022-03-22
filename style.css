@@ -12,6 +12,9 @@ margin:0;}
 .header{background-color:rgb(169, 240, 240);
        grid-area:1/2/1/2;
        display:flex;align-items: center;justify-content: center;
+       position: sticky;
+      top:0px;
+      height: 100%;
 }
 
 
@@ -22,13 +25,24 @@ margin:0;}
     display:flex; flex-direction: column;
     justify-content: start;
     align-items: center;
+
+    
 }
 .sidebarform form{display:flex;
     flex-direction:column;
       gap:2px;
       
-    
+    position: sticky;
+      top:0px;
+      height: 100vh;
+
+      
     }
+
+   form h2{text-align: center;
+      }
+
+      
 
 .container{padding:10px;}
 input[type=text], input[type=number]{
@@ -53,7 +67,7 @@ input[type=text], input[type=number]{
     border: none;
     cursor: pointer;
     width: 100%;
-    opacity: 0.6;
+    
   }
   
   button:hover {
@@ -75,7 +89,10 @@ input[type=text], input[type=number]{
     background-color:white;
     width:20vw;
     text-align:center;
+    
     }
+
+    
 
     img{cursor:pointer;}
 
