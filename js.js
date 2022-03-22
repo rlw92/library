@@ -55,10 +55,14 @@ let titleNode = document.createElement("h2");
  let readNode = document.createElement("h2");
  readNode.textContent = r;
 
+ let editbutton = document.createElement("button");
+ editbutton.textContent = "edit";
+bookNode.appendChild(editbutton);
  bookNode.appendChild(titleNode);
  bookNode.appendChild(authorNode);
  bookNode.appendChild(pgnumNode);
  bookNode.appendChild(readNode);
+ 
 
  let maincontent = document.querySelector(".maincontent");
  maincontent.appendChild(bookNode);
@@ -94,23 +98,52 @@ function addcardarr(){
  
   let readNode = document.createElement("h2");
   readNode.textContent = myLibrary[i].r;
- 
+
+  let editbutton = document.createElement("div");
+  editbutton.innerHTML = "<button onclick='readedit("+ i +")'>Edit</button>";
+
+  let binbutton = document.createElement("div");
+  binbutton.innerHTML = "<img onclick='del(" + i + ")'src='delete.png'>"
+
+  
   bookNode.appendChild(titleNode);
   bookNode.appendChild(authorNode);
   bookNode.appendChild(pgnumNode);
   bookNode.appendChild(readNode);
- 
+  bookNode.appendChild(editbutton);
+  bookNode.appendChild(binbutton);
+
   let maincontent = document.querySelector(".maincontent");
   maincontent.appendChild(bookNode);
   }
  }
 
 
+ //delete functioin to remove book//
+
+ function del(num){
+   myLibrary.splice(num,1);
+   addcardarr();
+ }
+
+ function readedit(num){
+ if(myLibrary[num].r === "read"){myLibrary[num].r = "unread"}
+else if(myLibrary[num].r === "unread"){myLibrary[num].r="read"}
+addcardarr();
+}
+
+
 
 
     
-    
+    //default card at start//
     document.querySelector(".title").textContent = myLibrary[0].title;
     document.querySelector(".author").textContent = myLibrary[0].author;
     document.querySelector(".pages").textContent = myLibrary[0].pgnum;
     document.querySelector(".read").textContent = myLibrary[0].r;
+    let editbutton = document.createElement("div");
+    editbutton.innerHTML = "<button onclick='readedit(0)'>Edit</button>";
+document.querySelector(".maincontent div").appendChild(editbutton);
+  let binbutton = document.createElement("div");
+  binbutton.innerHTML = "<img onclick='del(0)' src='delete.png'>"
+  document.querySelector(".maincontent div").appendChild(binbutton);
