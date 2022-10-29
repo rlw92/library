@@ -27,9 +27,9 @@ const autho = getAuth(app);
         if (user) {
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
-          var uid = user.uid;
+          var username = user.email;
           console.log(uid+" has logged in")
-          modbtn.textContent = uid;
+          modbtn.textContent = username;
           // ...
         } else {
           // User is signed out
@@ -71,7 +71,7 @@ function signIn(){
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    const username = user.uid;
+    const username = user.email;
     // ...
     console.log(user+" has signed in")
     modal.style.display = "none";
