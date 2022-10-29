@@ -69,10 +69,11 @@ function signIn(){
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
+    const username = user.uid;
     // ...
     console.log(user+" has signed in")
     modal.style.display = "none";
-    modbtn.textContent = user;
+    modbtn.textContent = username;
   })
   .catch((error) => {
     const errorCode = error.code;
