@@ -1,3 +1,90 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
+import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
+
+// TODO: Replace the following with your app's Firebase project configuration
+// See: https://firebase.google.com/docs/web/learn-more#config-object
+const firebaseConfig = {
+  apiKey: "AIzaSyDhGcmZTqboqHaksmcmiVr6Vz6iFfwX2sw",
+  authDomain: "library-4b054.firebaseapp.com",
+  databaseURL: "https://library-4b054-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "library-4b054",
+  storageBucket: "library-4b054.appspot.com",
+  messagingSenderId: "261590089995",
+  appId: "1:261590089995:web:e34ddff3a12c349659a20e"
+  // ...
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+// Initialize Firebase Authentication and get a reference to the service
+const authF = getAuth(app);
+
+let btn = document.getElementById("btn")
+
+
+
+authF.onAuthStateChanged((user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/firebase.User
+    var uid = user.uid;
+    console.log(uid+" has logged in")
+    // ...
+  } else {
+    // User is signed out
+    // ...
+    console.log("No user detected")
+  }
+});
+
+
+console.log("HI")
+
+function signUpWithEmailPassword() {
+  var email = document.getElementById("email").value;
+  var password = document.getElementById("pass").value;
+  // [START auth_signup_password]
+  createUserWithEmailAndPassword(authF, email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      // ...
+      console.log("It worked")
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(error)
+      // ..
+    });
+  // [END auth_signup_password]
+}
+
+function signOut(){
+authF.signOut().then(() => {
+// Sign-out successful.
+console.log("You have signed out")
+}).catch((error) => {
+// An error happened.
+console.log(error)
+});
+}
+
+let lgoutBtn = document.getElementById("LO");
+
+
+// for testing function GO(){console.log("HIHIHI")}
+
+btn.onclick = signUpWithEmailPassword;
+lgoutBtn.onclick = signOut;
+
+
+
+
+
+
 let myLibrary = [
 
   {
@@ -44,19 +131,19 @@ addcardarr();
 
 function addcardarr(){
   maincontent.textContent ="";
-  
+
   for(i=0;i<myLibrary.length;i++){
   let bookNode = document.createElement("div");
- 
+
  let titleNode = document.createElement("h2");
   titleNode.textContent =  myLibrary[i].title;
- 
+
   let authorNode = document.createElement("h2");
   authorNode.textContent = myLibrary[i].author;
- 
+
   let pgnumNode = document.createElement("h2");
   pgnumNode.textContent =  myLibrary[i].pgnum;
- 
+
   let readNode = document.createElement("h2");
   readNode.textContent = myLibrary[i].r;
 
@@ -66,7 +153,7 @@ function addcardarr(){
   let binbutton = document.createElement("div");
   binbutton.innerHTML = "<img onclick='del(" + i + ")'src='delete.png'>"
 
-  
+
   bookNode.appendChild(titleNode);
   bookNode.appendChild(authorNode);
   bookNode.appendChild(pgnumNode);
@@ -96,7 +183,7 @@ addcardarr();
 
 
 
-    
+
     //default card at start//
     document.querySelector(".title").textContent = myLibrary[0].title;
     document.querySelector(".author").textContent = myLibrary[0].author;
