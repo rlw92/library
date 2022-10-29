@@ -29,7 +29,7 @@ const autho = getAuth(app);
           // https://firebase.google.com/docs/reference/js/firebase.User
           var uid = user.uid;
           console.log(uid+" has logged in")
-          modbtn.textContent = username;
+          modbtn.textContent = uid;
           // ...
         } else {
           // User is signed out
