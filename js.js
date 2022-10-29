@@ -1,88 +1,106 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
-import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
+        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
+  
+        // TODO: Replace the following with your app's Firebase project configuration
+        // See: https://firebase.google.com/docs/web/learn-more#config-object
+        const firebaseConfig = {
+          apiKey: "AIzaSyDhGcmZTqboqHaksmcmiVr6Vz6iFfwX2sw",
+          authDomain: "library-4b054.firebaseapp.com",
+          databaseURL: "https://library-4b054-default-rtdb.europe-west1.firebasedatabase.app",
+          projectId: "library-4b054",
+          storageBucket: "library-4b054.appspot.com",
+          messagingSenderId: "261590089995",
+          appId: "1:261590089995:web:e34ddff3a12c349659a20e"
+          // ...
+        };
 
-// TODO: Replace the following with your app's Firebase project configuration
-// See: https://firebase.google.com/docs/web/learn-more#config-object
-const firebaseConfig = {
-  apiKey: "AIzaSyDhGcmZTqboqHaksmcmiVr6Vz6iFfwX2sw",
-  authDomain: "library-4b054.firebaseapp.com",
-  databaseURL: "https://library-4b054-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "library-4b054",
-  storageBucket: "library-4b054.appspot.com",
-  messagingSenderId: "261590089995",
-  appId: "1:261590089995:web:e34ddff3a12c349659a20e"
-  // ...
-};
+        let btn = document.getElementById("btn")
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-
+  
+  
 // Initialize Firebase Authentication and get a reference to the service
-const authF = getAuth(app);
+const autho = getAuth(app);
 
-let btn = document.getElementById("btn")
+      autho.onAuthStateChanged((user) => {
+        if (user) {
+          // User is signed in, see docs for a list of available properties
+          // https://firebase.google.com/docs/reference/js/firebase.User
+          var uid = user.uid;
+          console.log(uid+" has logged in")
+          // ...
+        } else {
+          // User is signed out
+          // ...
+          console.log("No user detected")
+        }
+      });
 
 
+      console.log("HI")
 
-authF.onAuthStateChanged((user) => {
-  if (user) {
-    // User is signed in, see docs for a list of available properties
-    // https://firebase.google.com/docs/reference/js/firebase.User
-    var uid = user.uid;
-    console.log(uid+" has logged in")
+      function signUpWithEmailPassword() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("pass").value;
+        // [START auth_signup_password]
+        createUserWithEmailAndPassword(autho, email, password)
+          .then((userCredential) => {
+            // Signed in
+            var user = userCredential.user;
+            // ...
+            console.log("It worked")
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(error)
+            // ..
+          });
+        // [END auth_signup_password]
+      }
+
+function signIn(){
+    var email = document.getElementById("email").value;
+        var password = document.getElementById("pass").value;
+    signInWithEmailAndPassword(autho, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
     // ...
-  } else {
-    // User is signed out
-    // ...
-    console.log("No user detected")
-  }
-});
+    console.log(user+" has signed in")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage)
+  });
+}      
 
 
-console.log("HI")
 
-function signUpWithEmailPassword() {
-  var email = document.getElementById("email").value;
-  var password = document.getElementById("pass").value;
-  // [START auth_signup_password]
-  createUserWithEmailAndPassword(authF, email, password)
-    .then((userCredential) => {
-      // Signed in
-      var user = userCredential.user;
-      // ...
-      console.log("It worked")
-    })
-    .catch((error) => {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(error)
-      // ..
-    });
-  // [END auth_signup_password]
-}
+
 
 function signOut(){
-authF.signOut().then(() => {
-// Sign-out successful.
-console.log("You have signed out")
-}).catch((error) => {
-// An error happened.
-console.log(error)
-});
-}
+      autho.signOut().then(() => {
+      // Sign-out successful.
+      console.log("You have signed out")
+    }).catch((error) => {
+      // An error happened.
+      console.log(error)
+    });
+  }
 
-let lgoutBtn = document.getElementById("LO");
+  let lgoutBtn = document.getElementById("LO");
+  let signInBtn = document.getElementById("signin");
+  signInBtn.onclick = signIn;
 
+      // for testing function GO(){console.log("HIHIHI")}
 
-// for testing function GO(){console.log("HIHIHI")}
-
-btn.onclick = signUpWithEmailPassword;
-lgoutBtn.onclick = signOut;
-
-
-
-
+      btn.onclick = signUpWithEmailPassword;
+      lgoutBtn.onclick = signOut;
+  
+        
 
 
 let myLibrary = [
