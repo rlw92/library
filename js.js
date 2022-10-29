@@ -50,6 +50,8 @@ const autho = getAuth(app);
             var user = userCredential.user;
             // ...
             console.log("It worked")
+            modal.style.display = "none";
+            modbtn.textContent = user;
           })
           .catch((error) => {
             var errorCode = error.code;
@@ -69,6 +71,8 @@ function signIn(){
     const user = userCredential.user;
     // ...
     console.log(user+" has signed in")
+    modal.style.display = "none";
+    modbtn.textContent = user;
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -85,6 +89,9 @@ function signOut(){
       autho.signOut().then(() => {
       // Sign-out successful.
       console.log("You have signed out")
+      modal.style.display = "none";
+    modbtn.textContent = "Sign-In";
+      
     }).catch((error) => {
       // An error happened.
       console.log(error)
@@ -99,6 +106,33 @@ function signOut(){
 
       btn.onclick = signUpWithEmailPassword;
       lgoutBtn.onclick = signOut;
+
+
+      // Get the modal
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var modbtn = document.getElementById("modalBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+modbtn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
   
         
 
