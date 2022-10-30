@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
         import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
-  
+
         // TODO: Replace the following with your app's Firebase project configuration
         // See: https://firebase.google.com/docs/web/learn-more#config-object
         const firebaseConfig = {
@@ -18,8 +18,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebas
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-  
-  
+
+
 // Initialize Firebase Authentication and get a reference to the service
 const autho = getAuth(app);
 
@@ -28,7 +28,7 @@ const autho = getAuth(app);
           // User is signed in, see docs for a list of available properties
           // https://firebase.google.com/docs/reference/js/firebase.User
           var username = user.email;
-          console.log(uid+" has logged in")
+          console.log(username+" has logged in")
           modbtn.textContent = username;
           // ...
         } else {
@@ -69,7 +69,7 @@ function signIn(){
         var password = document.getElementById("pass").value;
     signInWithEmailAndPassword(autho, email, password)
   .then((userCredential) => {
-    // Signed in 
+    // Signed in
     const user = userCredential.user;
     const username = user.email;
     // ...
@@ -82,7 +82,7 @@ function signIn(){
     const errorMessage = error.message;
     console.log(errorMessage)
   });
-}      
+}
 
 
 
@@ -94,7 +94,7 @@ function signOut(){
       console.log("You have signed out")
       modal.style.display = "none";
     modbtn.textContent = "Sign-In";
-      
+
     }).catch((error) => {
       // An error happened.
       console.log(error)
@@ -136,8 +136,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-  
-        
+
+
 
 
 let myLibrary = [
