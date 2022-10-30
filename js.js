@@ -1,4 +1,4 @@
-import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
+ import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
 
         // TODO: Replace the following with your app's Firebase project configuration
@@ -170,7 +170,7 @@ else if(che.checked === false){r = "unread"}
 
 }
 
-function addBookToLibrary() {
+const addBookToLibrary=()=> {
   let title = titl.value;
   let author = auth.value;
   let pgnum = pgnu.value;
@@ -185,11 +185,16 @@ addcardarr();
  let logbookbtn = document.getElementById("logbook");
  logbookbtn.onclick = addBookToLibrary;
 
-
-function addcardarr(){
+ //toggle read or unread on book//
+ const readedit = (num) => {
+ if(myLibrary[num].r === "read"){myLibrary[num].r = "unread"}
+else if(myLibrary[num].r === "unread"){myLibrary[num].r="read"}
+addcardarr();
+}
+const addcardarr =()=>{
   maincontent.textContent ="";
 
-  for(i=0;i<myLibrary.length;i++){
+  for(let i=0;i<myLibrary.length;i++){
   let bookNode = document.createElement("div");
 
  let titleNode = document.createElement("h2");
@@ -205,10 +210,12 @@ function addcardarr(){
   readNode.textContent = myLibrary[i].r;
 
   let editbutton = document.createElement("div");
-  editbutton.innerHTML = "<button onclick='readedit("+ i +")'>Edit Read Status</button>";
+  editbutton.innerHTML = "<button>Edit Read Status</button>";
+   editbutton.onclick = () => {readedit(i)};
 
   let binbutton = document.createElement("div");
-  binbutton.innerHTML = "<img onclick='del(" + i + ")'src='delete.png'>"
+  binbutton.innerHTML = "<img src='delete.png'>"
+  binbutton.onclick = ()=>{del(i)};
 
 
   bookNode.appendChild(titleNode);
@@ -231,24 +238,16 @@ function addcardarr(){
    addcardarr();
  }
 
- //toggle read or unread on book//
- function readedit(num){
- if(myLibrary[num].r === "read"){myLibrary[num].r = "unread"}
-else if(myLibrary[num].r === "unread"){myLibrary[num].r="read"}
-addcardarr();
-}
-
-
-
-
     //default card at start//
     document.querySelector(".title").textContent = myLibrary[0].title;
     document.querySelector(".author").textContent = myLibrary[0].author;
     document.querySelector(".pages").textContent = myLibrary[0].pgnum;
     document.querySelector(".read").textContent = myLibrary[0].r;
     let editbutton = document.createElement("div");
-    editbutton.innerHTML = "<button onclick='readedit(0)'>Edit Read Status</button>";
+    editbutton.innerHTML = "<button>Edit Read Status</button>";
+    editbutton.onclick=()=>{readedit(0)}
 document.querySelector(".maincontent div").appendChild(editbutton);
   let binbutton = document.createElement("div");
-  binbutton.innerHTML = "<img onclick='del(0)' src='delete.png'>"
+  binbutton.innerHTML = "<img src='delete.png'>"
+  binbutton.onclick = ()=>{del(0)}
   document.querySelector(".maincontent div").appendChild(binbutton);
