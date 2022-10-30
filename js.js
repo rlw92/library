@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
-        import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
 
         // TODO: Replace the following with your app's Firebase project configuration
         // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -182,6 +182,8 @@ else if(che.checked === false){r = "unread"}
 
 addcardarr();
  }
+ let logbookbtn = document.getElementById("logbook");
+ logbookbtn.onclick = addBookToLibrary;
 
 
 function addcardarr(){
