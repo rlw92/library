@@ -1,5 +1,7 @@
- import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
+import { getFirestore, collection, addDoc, getDocs, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+
 
         // TODO: Replace the following with your app's Firebase project configuration
         // See: https://firebase.google.com/docs/web/learn-more#config-object
@@ -19,6 +21,34 @@ import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWith
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
+// Initialize Cloud Firestore and get a reference to the service
+const db = getFirestore(app);
+
+
+//adding data to firestore
+let userID;
+
+function addDta(){
+//works below but need to see if other works
+
+addDoc(collection(db, "users"), {
+  title: titl.value,
+  author: auth.value,
+  pgnum: pgnu.value,
+  r: r,
+  user:userID
+    });
+  console.log("done")
+
+
+
+}
+
+
+
+let dtaBtn = document.getElementById("dta")
+dtaBtn.onclick = addDta;
+
 
 // Initialize Firebase Authentication and get a reference to the service
 const autho = getAuth(app);
@@ -30,12 +60,14 @@ const autho = getAuth(app);
           var username = user.email;
           console.log(username+" has logged in")
           modbtn.textContent = username;
+          userID = user.uid
           // ...
         } else {
           // User is signed out
           // ...
           console.log("No user detected")
           modbtn.textContent = "Sign-In";
+          userID = "Anonymous"
         }
       });
 
@@ -147,8 +179,25 @@ let myLibrary = [
     author: "George R. R. Martin",
     pgnum: 694,
     r: "read"
-  }
+  },
+
+
 ];
+
+//retrieving data from firestore-IT WORKS but normal js is out only showing first one at first
+
+const querySnapshot = await getDocs(collection(db, "users"));
+var newArray = [];
+querySnapshot.forEach((doc) => {
+  newArray.push(doc.data())
+console.log(newArray)
+    console.log(`${doc.id} => ${doc.data().title}`);
+
+});
+myLibrary = newArray
+console.log(myLibrary)
+
+
 
 //variable to access different elements.//
 let titl = document.getElementById("title");
@@ -238,7 +287,10 @@ const addcardarr =()=>{
    addcardarr();
  }
 
+ addcardarr();
+
     //default card at start//
+    /*
     document.querySelector(".title").textContent = myLibrary[0].title;
     document.querySelector(".author").textContent = myLibrary[0].author;
     document.querySelector(".pages").textContent = myLibrary[0].pgnum;
@@ -251,3 +303,4 @@ document.querySelector(".maincontent div").appendChild(editbutton);
   binbutton.innerHTML = "<img src='delete.png'>"
   binbutton.onclick = ()=>{del(0)}
   document.querySelector(".maincontent div").appendChild(binbutton);
+  */
