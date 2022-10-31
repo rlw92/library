@@ -1,6 +1,9 @@
+
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs, doc, setDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+import { getFirestore, collection, addDoc, getDocs, doc, setDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+
+
 
 
         // TODO: Replace the following with your app's Firebase project configuration
@@ -181,11 +184,15 @@ async function getDta(){
 const querySnapshot = await getDocs(collection(db, "users"));
 var newArray = [];
 querySnapshot.forEach((doc) => {
-  if(doc.data().user === userID){
+
+    if(doc.data().user === userID){
+
   newArray.push(doc.data())
 console.log(newArray)
     console.log(`${doc.id} => ${doc.data().title}`);
 }
+
+
 });
 myLibrary = newArray
 console.log(myLibrary)
@@ -296,10 +303,22 @@ const addcardarr =()=>{
 
  //delete functioin to remove book//
 
- function del(num){
+
+
+async function del(num){
+
+if(autho.currentUser){
+
+     await deleteDoc(doc(db, "users", "DC"))
+}
+else {
    myLibrary.splice(num,1);
    addcardarr();
+   console.log(myLibrary[num])
  }
+
+ }
+
 
  addcardarr();
 
