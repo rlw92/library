@@ -44,12 +44,6 @@ addDoc(collection(db, "users"), {
 
 }
 
-
-
-let dtaBtn = document.getElementById("dta")
-dtaBtn.onclick = addDta;
-
-
 // Initialize Firebase Authentication and get a reference to the service
 const autho = getAuth(app);
 
@@ -61,6 +55,7 @@ const autho = getAuth(app);
           console.log(username+" has logged in")
           modbtn.textContent = username;
           userID = user.uid
+          getDta();
           // ...
         } else {
           // User is signed out
@@ -68,7 +63,16 @@ const autho = getAuth(app);
           console.log("No user detected")
           modbtn.textContent = "Sign-In";
           userID = "Anonymous"
-        }
+          myLibrary=[
+            {
+              title: "A Game of Thrones",
+              author: "George R. R. Martin",
+              pgnum: 694,
+              r: "read"
+            },
+          ]
+          addcardarr();
+                  }
       });
 
 
@@ -171,6 +175,22 @@ window.onclick = function(event) {
 
 
 
+//retrieving data from firestore-not working !!!
+
+async function getDta(){
+const querySnapshot = await getDocs(collection(db, "users"));
+var newArray = [];
+querySnapshot.forEach((doc) => {
+  if(doc.data().user === userID){
+  newArray.push(doc.data())
+console.log(newArray)
+    console.log(`${doc.id} => ${doc.data().title}`);
+}
+});
+myLibrary = newArray
+console.log(myLibrary)
+addcardarr();
+}
 
 let myLibrary = [
 
@@ -183,19 +203,6 @@ let myLibrary = [
 
 
 ];
-
-//retrieving data from firestore-IT WORKS but normal js is out only showing first one at first
-
-const querySnapshot = await getDocs(collection(db, "users"));
-var newArray = [];
-querySnapshot.forEach((doc) => {
-  newArray.push(doc.data())
-console.log(newArray)
-    console.log(`${doc.id} => ${doc.data().title}`);
-
-});
-myLibrary = newArray
-console.log(myLibrary)
 
 
 
@@ -220,6 +227,12 @@ else if(che.checked === false){r = "unread"}
 }
 
 const addBookToLibrary=()=> {
+
+  if(autho.currentUser){
+    addDta();
+    getDta();
+  }
+  else{
   let title = titl.value;
   let author = auth.value;
   let pgnum = pgnu.value;
@@ -227,6 +240,7 @@ const addBookToLibrary=()=> {
 else if(che.checked === false){r = "unread"}
     let newbook = new Book(title,author,pgnum,r);
   myLibrary.push(newbook);
+}
 
 
 addcardarr();
