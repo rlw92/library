@@ -43,6 +43,8 @@ doc(collection(db, "users"), {
     });
 
     */
+    if(che.checked === true){r = "read"}
+    else if(che.checked === false){r = "unread"}
 const newdoc = doc(collection(db, "users"))
 const data =  {
   title: titl.value,
@@ -233,6 +235,7 @@ let auth = document.getElementById("psw");
 let pgnu = document.getElementById("pgnum");
 let che = document.getElementById("check");
 let r;
+console.log(che.checked)
 if(che.checked === true){r = "read"}
 else if(che.checked === false){r = "unread"}
 let maincontent = document.querySelector(".maincontent");
