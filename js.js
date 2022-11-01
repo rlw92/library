@@ -31,16 +31,30 @@ const db = getFirestore(app);
 //adding data to firestore
 let userID;
 
-function addDta(){
+async function addDta(){
 //works below but need to see if other works
-
-addDoc(collection(db, "users"), {
+/*this works but change doc back to addDoc
+doc(collection(db, "users"), {
   title: titl.value,
   author: auth.value,
   pgnum: pgnu.value,
   r: r,
   user:userID
     });
+
+    */
+const newdoc = doc(collection(db, "users"))
+const data =  {
+  title: titl.value,
+  author: auth.value,
+  pgnum: pgnu.value,
+  r: r,
+  user:userID,
+  id: newdoc.id
+    }
+
+await setDoc(newdoc, data);
+
   console.log("done")
 
 
@@ -309,7 +323,7 @@ async function del(num){
 
 if(autho.currentUser){
 
-     await deleteDoc(doc(db, "users", "DC"))
+     await deleteDoc(doc(db, "users", myLibrary[num].id))
 }
 else {
    myLibrary.splice(num,1);
@@ -319,7 +333,7 @@ else {
 
  }
 
-
+ getDta();
  addcardarr();
 
     //default card at start//
