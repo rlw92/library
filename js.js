@@ -1,7 +1,7 @@
 
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-app.js';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js';
-import { getFirestore, collection, addDoc, getDocs, doc, setDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
+import { getFirestore, collection, addDoc, getDocs, doc, setDoc, deleteDoc, updateDoc } from 'https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js'
 
 
 
@@ -273,9 +273,31 @@ addcardarr();
  logbookbtn.onclick = addBookToLibrary;
 
  //toggle read or unread on book//
- const readedit = (num) => {
+ const readedit = async(num) => {
+
+   if(autho.currentUser){
+     const editRef = doc(db, "users", myLibrary[num].id);
+     if(myLibrary[num].r === "read"){
+       await updateDoc(editRef, {
+         r: "unread"
+    });
+
+       myLibrary[num].r = "unread"}
+    else if(myLibrary[num].r === "unread"){
+      await updateDoc(editRef, {
+        r: "read"
+      });
+      myLibrary[num].r="read"
+
+   getDta();
+   }
+ }
+   else{
+
+
  if(myLibrary[num].r === "read"){myLibrary[num].r = "unread"}
-else if(myLibrary[num].r === "unread"){myLibrary[num].r="read"}
+ else if(myLibrary[num].r === "unread"){myLibrary[num].r="read"}
+}
 addcardarr();
 }
 const addcardarr =()=>{
@@ -317,11 +339,7 @@ const addcardarr =()=>{
   }
  }
 
-
  //delete functioin to remove book//
-
-
-
 async function del(num){
 
 if(autho.currentUser){
