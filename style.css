@@ -38,8 +38,10 @@
   cursor: pointer;
 }
 
+#modalBtn:hover{color:blue;cursor:pointer;}
+
 body{
-    
+
 padding:0;
 margin:0;}
 
@@ -58,29 +60,29 @@ margin:0;}
 
 /*form/ sidebar content*/
 .sidebarform{background-color:rgb(240, 132, 132);
-  
+
     grid-area:1/1/5/1;
     display:flex; flex-direction: column;
     justify-content: start;
     align-items: center;
 
-    
+
 }
 .sidebarform form{display:flex;
     flex-direction:column;
       gap:2px;
-      
+
     position: sticky;
       top:0px;
       height: 100vh;
 
-      
+
     }
 
    form h2{text-align: center;
       }
 
-      
+
 
 .container{padding:10px;}
 input[type=text], input[type=number]{
@@ -105,9 +107,9 @@ input[type=text], input[type=number]{
     border: none;
     cursor: pointer;
     width: 100%;
-    
+
   }
-  
+
   button:hover {
     opacity:1;
   }
@@ -120,20 +122,16 @@ input[type=text], input[type=number]{
     display:grid;
     grid-template-columns:1fr 1fr 1fr;
     gap:10px;
-   
+
   }
 
   .maincontent div{
     background-color:white;
     width:20vw;
     text-align:center;
-    
+
     }
 
-    
+
 
     img{cursor:pointer;}
-
-    
-  
-   
