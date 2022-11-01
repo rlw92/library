@@ -324,6 +324,7 @@ async function del(num){
 if(autho.currentUser){
 
      await deleteDoc(doc(db, "users", myLibrary[num].id))
+      getDta();
 }
 else {
    myLibrary.splice(num,1);
@@ -333,7 +334,7 @@ else {
 
  }
 
- getDta();
+
  addcardarr();
 
     //default card at start//
