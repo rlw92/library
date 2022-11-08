@@ -51,8 +51,11 @@ margin:0;}
 
 .header{background-color:rgb(169, 240, 240);
        grid-area:1/2/1/2;
-       display:flex;align-items: center;justify-content: center;
-       position: sticky;
+       display:flex;
+       flex-direction: column;
+       align-items: center;
+       justify-content: center;
+        position: sticky;
       top:0px;
       height: 100%;
 }
@@ -120,18 +123,34 @@ input[type=text], input[type=number]{
   .maincontent{background-color:rgb(161, 161, 172);
     grid-area:2/2/5/3;padding:10px;
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    gap:10px;
+  /*  grid-template-columns:1fr 1fr 1fr; */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 300px));
+    justify-content: center;
+    gap:20px;
+
 
   }
 
   .maincontent div{
     background-color:white;
-    width:20vw;
     text-align:center;
+
 
     }
 
+img{cursor:pointer;}
 
+/*The form should be hidden when the user is not in desktop and be activated with a button producing it in a modal*/
 
-    img{cursor:pointer;}
+@media (max-width: 868px) {
+  .sidebarform {
+    display:none;
+  }
+  .header{
+    grid-area:1/1/1/3;
+  }
+.maincontent{
+  grid-area: 2/1/2/3;
+}
+      /*grid-template-rows:25vh 25vh 25vh 25vh;*/}
+}
