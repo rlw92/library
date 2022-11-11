@@ -356,6 +356,19 @@ else {
  }
 
 
+ //Function shows form when in mobile mode
+ const bkBtn = document.querySelector(".bkBtn");
+ const sdfrm = document.querySelector(".sidebarform")
+ const container = document.querySelector("form")
+ bkBtn.onclick = function(){sdfrm.style.display = "block";
+                            sdfrm.style.animationName = "showblock";
+                            sdfrm.style.animationDuration= "4s";
+                            container.style.animationName = "showcont";
+                            container.style.animationDuration = "4s";
+                          }
+ const clsFrm = document.querySelector(".closeFrm");
+ clsFrm.onclick = function(){sdfrm.style.display="none"}
+
  addcardarr();
 
     //default card at start//
