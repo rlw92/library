@@ -164,6 +164,13 @@ img{cursor:pointer;}
 
 }
 
+@keyframes hidecont {
+
+  from {width:50%;}
+  to {width:0;}
+
+}
+
 @media (max-width: 868px) {
   .sidebarform {
     display:none;

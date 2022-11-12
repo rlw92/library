@@ -250,7 +250,9 @@ else if(che.checked === false){r = "unread"}
 
 }
 
-const addBookToLibrary=()=> {
+console.log("HUI")
+const addBookToLibrary=(e)=> {
+  e.preventDefault();
 
   if(autho.currentUser){
     addDta();
@@ -269,9 +271,13 @@ else if(che.checked === false){r = "unread"}
 
 addcardarr();
  }
+console.log("JJJ");
+let bookForm = document.querySelector("#bookForm");
+bookForm.addEventListener("submit",addBookToLibrary)
+/* testing form
  let logbookbtn = document.getElementById("logbook");
  logbookbtn.onclick = addBookToLibrary;
-
+*/
  //toggle read or unread on book//
  const readedit = async(num) => {
 
@@ -367,7 +373,7 @@ else {
                             container.style.animationDuration = "4s";
                           }
  const clsFrm = document.querySelector(".closeFrm");
- clsFrm.onclick = function(){sdfrm.style.display="none"}
+ clsFrm.onclick = function(){sdfrm.style.display="none";}
 
  addcardarr();
 
