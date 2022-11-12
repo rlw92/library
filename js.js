@@ -250,7 +250,6 @@ else if(che.checked === false){r = "unread"}
 
 }
 
-console.log("HUI")
 const addBookToLibrary=(e)=> {
   e.preventDefault();
 
@@ -271,7 +270,8 @@ else if(che.checked === false){r = "unread"}
 
 addcardarr();
  }
-console.log("JJJ");
+
+
 let bookForm = document.querySelector("#bookForm");
 bookForm.addEventListener("submit",addBookToLibrary)
 /* testing form
@@ -368,10 +368,11 @@ else {
  const container = document.querySelector("form")
  bkBtn.onclick = function(){sdfrm.style.display = "block";
                             sdfrm.style.animationName = "showblock";
-                            sdfrm.style.animationDuration= "4s";
+                            sdfrm.style.animationDuration= "2s";
                             container.style.animationName = "showcont";
                             container.style.animationDuration = "4s";
                           }
+                          console.log("PU")
  const clsFrm = document.querySelector(".closeFrm");
  clsFrm.onclick = function(){sdfrm.style.display="none";}
 

@@ -153,8 +153,8 @@ img{cursor:pointer;}
 
 /*The form should be hidden when the user is not in desktop and be activated with a button producing it in a modal*/
 @keyframes showblock {
-  from {width:0px;}
-  to {width:50%;}
+  from {left:-50%;}
+  to {left:0;}
 }
 
 @keyframes showcont {
