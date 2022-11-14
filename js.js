@@ -19,7 +19,7 @@ import { getFirestore, collection, addDoc, getDocs, doc, setDoc, deleteDoc, upda
           // ...
         };
 
-        let btn = document.getElementById("btn")
+        let registerBtn = document.getElementById("registerbtn")
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -63,6 +63,19 @@ await setDoc(newdoc, data);
 
 }
 
+const usrblck= document.querySelector(".userBlock");
+const drplog=document.querySelector(".dropdownLogin");
+
+function drplogShow(){
+  drplog.style = "display:flex;flex-direction: column;justify-content: center;align-items: center;";
+}
+
+function drplogHide(){
+  drplog.style = "display:none;"
+}
+
+
+//console.log("hh");
 // Initialize Firebase Authentication and get a reference to the service
 const autho = getAuth(app);
 
@@ -73,6 +86,8 @@ const autho = getAuth(app);
           var username = user.email;
           console.log(username+" has logged in")
           modbtn.textContent = username;
+          usrblck.addEventListener('mouseover', drplogShow);
+          usrblck.addEventListener('mouseleave', drplogHide);
           userID = user.uid
           getDta();
           // ...
@@ -81,8 +96,13 @@ const autho = getAuth(app);
           // ...
           console.log("No user detected")
           modbtn.textContent = "Sign-In";
-          userID = "Anonymous"
-          myLibrary=[
+          userID = "Anonymous";
+          drplog.style = "display:none"
+          usrblck.removeEventListener('mouseover', drplogShow);
+          usrblck.removeEventListener('mouseleave', drplogHide);
+
+
+                  myLibrary=[
             {
               title: "A Game of Thrones",
               author: "George R. R. Martin",
@@ -162,7 +182,7 @@ function signOut(){
 
       // for testing function GO(){console.log("HIHIHI")}
 
-      btn.onclick = signUpWithEmailPassword;
+      registerBtn.onclick = signUpWithEmailPassword;
       lgoutBtn.onclick = signOut;
 
 
