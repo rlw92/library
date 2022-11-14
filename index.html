@@ -23,10 +23,29 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <input id="email"></input>
-<input id="pass"></input>
+
+    <form id="signinform">
+      <h2>Sign in</h2>
+  <label for="Email">Email:</label><br>
+  <input type="text" id="email" name="email"><br>
+  <label for="password">Password:</label><br>
+  <input type="password" id="pass" name="pass">
+  <button type="submit">Sign In</button>
+</form>
+
+<form id="signupform">
+  <h2>New User Sign Up</h2>
+<label for="Email">Email:</label><br>
+<input type="text" id="regemail" name="email"><br>
+<label for="password">Password:</label><br>
+<input type="password" id="regpass" name="pass">
+<button type="submit">Sign up User</button>
+</form>
+
 <button id="registerbtn">Create User</button>
+
 <button id="signin">Sign in</button>
+
   </div>
 
 </div>
@@ -41,7 +60,7 @@
       <div class="userBlock">
       <h3 id="modalBtn">Sign-In</h3>
       <div class="dropdownLogin">
-    
+
       <button id="LO">Log out</button>
     </div>
     </div>

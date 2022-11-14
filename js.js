@@ -66,6 +66,7 @@ await setDoc(newdoc, data);
 const usrblck= document.querySelector(".userBlock");
 const drplog=document.querySelector(".dropdownLogin");
 
+//show the login dropdown
 function drplogShow(){
   drplog.style = "display:flex;flex-direction: column;justify-content: center;align-items: center;";
 }
@@ -118,8 +119,8 @@ const autho = getAuth(app);
       console.log("HI")
 
       function signUpWithEmailPassword() {
-        var email = document.getElementById("email").value;
-        var password = document.getElementById("pass").value;
+        var email = document.getElementById("regemail").value;
+        var password = document.getElementById("regpass").value;
         // [START auth_signup_password]
         createUserWithEmailAndPassword(autho, email, password)
           .then((userCredential) => {
@@ -139,7 +140,8 @@ const autho = getAuth(app);
         // [END auth_signup_password]
       }
 
-function signIn(){
+function signIn(e){
+  e.preventDefault();
     var email = document.getElementById("email").value;
         var password = document.getElementById("pass").value;
     signInWithEmailAndPassword(autho, email, password)
@@ -176,13 +178,36 @@ function signOut(){
     });
   }
 
+/* example taken from below to implement on login forms
+  let bookForm = document.querySelector("#bookForm");
+  bookForm.addEventListener("submit",addBookToLibrary)
+*/
+
+let signinform = document.querySelector("#signinform")
+signinform.addEventListener("submit", signIn)
   let lgoutBtn = document.getElementById("LO");
   let signInBtn = document.getElementById("signin");
-  signInBtn.onclick = signIn;
+  signInBtn.onclick = ()=>{
+    document.getElementById("signupform").style.display = "none";
+     document.getElementById("signinform").style.display = "block";
+    registerBtn.style.display="block";
+  signInBtn.style.display = "none";
+    };
 
       // for testing function GO(){console.log("HIHIHI")}
 
-      registerBtn.onclick = signUpWithEmailPassword;
+      //registerBtn.onclick = signUpWithEmailPassword;
+      registerBtn.onclick = ()=>{
+        document.getElementById("signupform").style.display = "block";
+         document.getElementById("signinform").style.display = "none";
+        registerBtn.style.display="none";
+      signInBtn.style.display = "block";
+      signInBtn.textContent = "Sign In Existing User" }
+      let signupform = document.querySelector("#signupform");
+      signupform.addEventListener("submit",signUpWithEmailPassword)
+
+
+
       lgoutBtn.onclick = signOut;
 
 
