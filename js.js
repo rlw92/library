@@ -91,6 +91,9 @@ const autho = getAuth(app);
           usrblck.addEventListener('mouseleave', drplogHide);
           userID = user.uid
           getDta();
+          modbtn.removeEventListener("click",openModal)
+
+
           // ...
         } else {
           // User is signed out
@@ -101,6 +104,8 @@ const autho = getAuth(app);
           drplog.style = "display:none"
           usrblck.removeEventListener('mouseover', drplogShow);
           usrblck.removeEventListener('mouseleave', drplogHide);
+          modbtn.addEventListener("click",openModal)
+
 
 
                   myLibrary=[
@@ -221,9 +226,11 @@ var modbtn = document.getElementById("modalBtn");
 var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
-modbtn.onclick = function() {
+function openModal() {
   modal.style.display = "block";
 }
+
+
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -419,7 +426,24 @@ else {
                           }
                           console.log("PU")
  const clsFrm = document.querySelector(".closeFrm");
- clsFrm.onclick = function(){sdfrm.style.display="none";}
+  function closeSideForm(){sdfrm.style.display="none";}
+  clsFrm.addEventListener("click",closeSideForm); 
+
+//function to make the sidebr form reappear if the user upsizes the browser
+
+let media = window.matchMedia("(max-width: 869px)")
+
+const showMediaForm = (media) => {
+  if (media.matches) { // If media query matches
+
+      sdfrm.style.display = "none";
+
+  } else {
+  sdfrm.style.display = "block";
+  }
+};
+
+media.addListener(showMediaForm)
 
  addcardarr();
 
